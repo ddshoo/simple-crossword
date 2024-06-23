@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Crossword, { CrosswordSizeContext, ThemeProvider } from '@jaredreisinger/react-crossword';
 import './styles.css'; // Import the CSS file where the correct and incorrect classes are defined
@@ -20,19 +20,37 @@ const sizeContext = {
   fontSize: (30 - 0.125 * 2) * 0.7,
 };
 
+const hardCodedData = {
+  "across": {
+    "1": {
+      "clue": "one plus one",
+      "answer": "TWO",
+      "row": 0,
+      "col": 0
+    },
+    "2": {
+      "clue": "something that blows air",
+      "answer": "FAN",
+      "row": 1,
+      "col": 0
+    }
+  },
+  "down": {
+    "2": {
+      "clue": "three minus two",
+      "answer": "ONE",
+      "row": 0,
+      "col": 2
+    }
+  }
+};
+
 function CrosswordPage() {
-  const { topic } = useParams();
-  const [crosswordData, setCrosswordData] = useState(null);
   const [status, setStatus] = useState('');
   const [autoCheck, setAutoCheck] = useState(false); // State for autocheck
   const crosswordRef = useRef(null);  // Create a ref for the Crossword component
   const [incorrectCells, setIncorrectCells] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:3001/crossword/${topic}`)
-      .then(response => response.json())
-      .then(data => setCrosswordData(data));
-  }, [topic]);
+  const [crosswordData, setCrosswordData] = useState(hardCodedData);
 
   const handleCrosswordComplete = () => {
     if (crosswordRef.current.isCrosswordCorrect()) {
@@ -93,15 +111,11 @@ function CrosswordPage() {
     ));
   };
 
-  if (!crosswordData) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <ThemeProvider theme={themeContext}>
       <CrosswordSizeContext.Provider value={sizeContext}>
         <div className="crossword-container">
-          <h2>Crossword for topic: {topic}</h2>
+          <h2>Crossword for topic: example</h2>
           <div>
             <label>
               <input
