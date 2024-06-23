@@ -1,0 +1,42 @@
+.crossword-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #000; /* Ensure text within the container is black */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000; /* Ensure the heading text is black */
+}
+
+.crossword {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.crossword__clue-list {
+    margin-top: 20px;
+    background-color: #fff;
+    color: #000; /* Ensure the clue text color is black */
+}
+
+.crossword__clue {
+    margin: 5px 0;
+    color: #000; /* Ensure the clue text color is black */
+}
+
+.crossword__cell {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: #000; /* Ensure the cell text color is black */
+}
+
+.crossword__cell--highlighted {
+    background-color: #e0f7fa;
+}
